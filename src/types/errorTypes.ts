@@ -1,6 +1,7 @@
 export interface ErrorOptions {
   statusCode?: number;
   message? : string;
+  errorFunction?: Function;
 }
 
 const errorPrefixes: Record<string, string> = {

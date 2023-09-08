@@ -1,10 +1,19 @@
-import { LogLevel } from './types';
+import { LogLevel } from './types/logLevels';
+import { ErrorOptions } from './types/errorTypes';
+import { LoggerErrorService } from './services/loggerErrorService'
+import { LoggerSuccessService } from './services/loggerSuccessService';
 
 export class Logger {
-  public error(message: string): void {
-    console.error(`[ERROR] $(message)`);
+  private loggerErrorService: LoggerErrorService;
+
+  constructor() {
+    this.loggerErrorService = new LoggerErrorService();
   }
 
+  public error(options: ErrorOptions = {}): void {
+    return this.loggerErrorService.createError(options);
+  }
+  
   public success(message: string): void {
     console.log(`[SUCCESS] $(message)`);
   }
